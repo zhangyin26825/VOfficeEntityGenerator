@@ -1,0 +1,65 @@
+<idea-plugin>
+  <id>com.voffice.idea.plugin</id>
+  <name>VOffice DAO Generator</name>
+  <version>1.0</version>
+  <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>
+
+  <description><![CDATA[
+      VOffice DAO Generator<br>
+      <em>most HTML tags may be used</em>
+    ]]></description>
+
+  <change-notes><![CDATA[
+      Add change notes here.<br>
+      <em>most HTML tags may be used</em>
+    ]]>
+  </change-notes>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+  <idea-version since-build="163"/>
+
+  <!--<project-components>-->
+  <!--<component>-->
+  <!--<implementation-class>com.voffice.idea.plugin.MyProjectComponent</implementation-class>-->
+  <!--</component>-->
+  <!--</project-components>-->
+
+
+
+  <extensions defaultExtensionNs="com.intellij">
+    <applicationService
+            serviceImplementation="com.voffice.idea.plugin.mysqlconfig.MySqlPersistent"
+            serviceInterface="com.voffice.idea.plugin.mysqlconfig.MySqlPersistent"
+    />
+
+  </extensions>
+
+  <actions>
+    <!-- Add your actions here -->
+    <group id="maqv.group" text="玛曲插件" description=" gen group" popup="true">
+      <add-to-group group-id="CodeMenu" anchor="after" relative-to-action="Generate"/>
+    </group>
+
+    <action id="maqv.mysql.config" class="com.voffice.idea.plugin.action.MysqlConfigMenuAction" text="配置"
+            description="配置mysql属性">
+      <add-to-group group-id="maqv.group" anchor="first" />
+    </action>
+
+    <action id="maqv.mysql.generator" class="com.voffice.idea.plugin.action.EntityGeneratorAction" text="生成实体类"
+            description="生成实体类">
+      <add-to-group group-id="maqv.group" anchor="first" />
+    </action>
+
+    <action id="maqv.mysql.test" class="com.voffice.idea.plugin.action.ServiceControllerTemplateAction" text="ServiceController模板"
+            description="ServiceController模板">
+      <add-to-group group-id="maqv.group" anchor="last" />
+    </action>
+
+    <action id="maqv.mysql.test1" class="com.voffice.idea.plugin.action.TestAction" text="测试"
+            description="测试">
+      <add-to-group group-id="maqv.group" anchor="last" />
+    </action>
+
+  </actions>
+
+</idea-plugin>
