@@ -2,7 +2,9 @@ package com.voffice.idea.plugin.jdbc;
 
 
 
+import com.voffice.idea.plugin.action.EntityGeneratorAction;
 import com.voffice.idea.plugin.mysqlconfig.MySqlPersistent;
+import org.apache.log4j.Logger;
 
 import java.math.BigInteger;
 import java.sql.*;
@@ -12,6 +14,8 @@ import java.util.List;
 import java.util.Map;
 
 public class JdbcUtil {
+
+    private static Logger logger = Logger.getLogger(JdbcUtil.class);
 
     MySqlPersistent.MySqlConfig mySqlConfig;
 
@@ -49,7 +53,7 @@ public class JdbcUtil {
             }
             return result;
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e);
         }
         return null;
     }
@@ -70,7 +74,7 @@ public class JdbcUtil {
             }
             return result;
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e);
         }
         return null;
     }
@@ -141,7 +145,7 @@ public class JdbcUtil {
 
             return result;
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e);
         }
         return null;
     }
@@ -158,8 +162,9 @@ public class JdbcUtil {
                 return string;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
-        }  return  null;
+            logger.error(e);
+        }
+        return  null;
 
     }
 

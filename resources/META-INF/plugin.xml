@@ -27,11 +27,10 @@
 
 
   <extensions defaultExtensionNs="com.intellij">
-    <applicationService
+    <projectService
             serviceImplementation="com.voffice.idea.plugin.mysqlconfig.MySqlPersistent"
             serviceInterface="com.voffice.idea.plugin.mysqlconfig.MySqlPersistent"
     />
-
   </extensions>
 
   <actions>

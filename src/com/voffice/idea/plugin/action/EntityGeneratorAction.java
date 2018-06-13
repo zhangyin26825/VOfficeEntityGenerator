@@ -16,6 +16,7 @@ import com.voffice.idea.plugin.jdbc.TableSql;
 import com.voffice.idea.plugin.ui.listselect.DataListSelect;
 import com.voffice.idea.plugin.ui.listselect.ListValue;
 import com.voffice.idea.plugin.ui.listselect.SelectedCallback;
+import org.apache.log4j.Logger;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -23,12 +24,18 @@ import java.util.List;
 
 public class EntityGeneratorAction extends AnAction {
 
+    private static Logger logger = Logger.getLogger(EntityGeneratorAction.class);
+
     @Override
     public void actionPerformed(AnActionEvent e) {
         DirectoryManager.init(G.getProject());
         JdbcUtil jdbcUtil=new JdbcUtil();
         //查询所有的表
         List<TableSql> tableSqls = jdbcUtil.queryAllTableName();
+
+        if(tableSqls==null){
+            logger.error("查询数据库的表的信息为空");
+        }
 //        //查询生成过实体类的表
 //        Set<String> generatedTables = GeneratedEntityTable.getGeneratedTables();
 //        //过滤获取所有未生成过实体类的表
