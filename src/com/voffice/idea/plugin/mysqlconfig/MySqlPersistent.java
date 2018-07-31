@@ -1,17 +1,21 @@
 package com.voffice.idea.plugin.mysqlconfig;
 
+import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.openapi.components.PersistentStateComponent;
 import com.intellij.openapi.components.ServiceManager;
 import com.intellij.openapi.components.State;
 import com.intellij.openapi.components.Storage;
+import com.voffice.idea.plugin.G;
 import org.jetbrains.annotations.Nullable;
+
+
 
 @State(
         name = "maqv-gen-mysql",
         storages = {
                 @Storage(
                         id = "maqv-gen-mysql",
-                        file = "$APP_CONFIG$/maqv-gen-mysql.xml"
+                        file = "maqv-gen-mysql.xml"
                 )
         }
 )
@@ -19,14 +23,14 @@ public class MySqlPersistent implements PersistentStateComponent<MySqlPersistent
 
 
     public static MySqlConfig getMySqlConfig() {
-        MySqlPersistent service = ServiceManager.getService(MySqlPersistent.class);
+        MySqlPersistent service = ServiceManager.getService(G.getProject(),MySqlPersistent.class);
         if(service.getState()==null){
             service.loadState(new MySqlConfig());
         }
         return  service.getState();
     }
     public static void  saveMySqlConfig(MySqlConfig mySqlConfig){
-        MySqlPersistent service = ServiceManager.getService(MySqlPersistent.class);
+        MySqlPersistent service = ServiceManager.getService(G.getProject(),MySqlPersistent.class);
         service.loadState(mySqlConfig);
     }
 
@@ -46,13 +50,13 @@ public class MySqlPersistent implements PersistentStateComponent<MySqlPersistent
 
     public static class MySqlConfig{
         private  String driverName= "com.mysql.jdbc.Driver";
-        private  String jdbcURL= "jdbc:mysql://rm-wz970j84167q2388a.mysql.rds.aliyuncs.com:3306/sz-local?zeroDateTimeBehavior=convertToNull";
+        private  String jdbcURL= "jdbc:mysql://rm-wz970j84167q2388a.mysql.rds.aliyuncs.com:3306/ziguan_local?zeroDateTimeBehavior=convertToNull";
         private  String username= "voffice_sz";
         private  String password= "Db2017Admin";
         private  String enumSuffix="enum,status,type,flg";
-        private  String entityPackage="";
-        private  String ServicePackage="";
-        private  String controllerPackage="";
+        private  String entityPackage="com.maqv.assetmanagement.v2";
+        private  String ServicePackage="com.maqv.assetmanagement.service";
+        private  String controllerPackage="com.maqv.assetmanagement.controller";
 
 
         public String getDriverName() {

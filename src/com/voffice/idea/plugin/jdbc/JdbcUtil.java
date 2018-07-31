@@ -54,8 +54,8 @@ public class JdbcUtil {
             return result;
         } catch (SQLException e) {
             logger.error(e);
+            throw new RuntimeException(e);
         }
-        return null;
     }
 
     public Map<String,Integer> queryJdbcType(String tableName){
@@ -75,8 +75,8 @@ public class JdbcUtil {
             return result;
         } catch (SQLException e) {
             logger.error(e);
+            throw new RuntimeException(e);
         }
-        return null;
     }
 
     public List<ColumnInfo>  queryColumns(String tableName){
@@ -146,8 +146,8 @@ public class JdbcUtil {
             return result;
         } catch (SQLException e) {
             logger.error(e);
+            throw new RuntimeException(e);
         }
-        return null;
     }
 
     public String  createTableSql(String tableName){
@@ -163,9 +163,9 @@ public class JdbcUtil {
             }
         } catch (SQLException e) {
             logger.error(e);
+            throw new RuntimeException(e);
         }
         return  null;
-
     }
 
 }

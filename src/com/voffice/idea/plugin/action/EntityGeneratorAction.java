@@ -36,11 +36,6 @@ public class EntityGeneratorAction extends AnAction {
         if(tableSqls==null){
             logger.error("查询数据库的表的信息为空");
         }
-//        //查询生成过实体类的表
-//        Set<String> generatedTables = GeneratedEntityTable.getGeneratedTables();
-//        //过滤获取所有未生成过实体类的表
-//        List<TableSql> allNotGeneratorTable = tableSqls.stream().filter(t -> !generatedTables.contains(t.getTableName())).collect(Collectors.toList());
-
         SelectedCallback selectedCallback=new SelectedCallback() {
             @Override
             public void handleSelectValue(ListValue listValue) {
@@ -66,15 +61,6 @@ public class EntityGeneratorAction extends AnAction {
 
     @Override
     public void update(AnActionEvent e) {
-
         G.run(e.getProject());
-//        super.update(e);
-//        DumbService.getInstance(e.getProject()).smartInvokeLater(new Runnable() {
-//            @Override
-//            public void run() {
-//                G.run(e.getProject());
-//            }
-//        });
-//        this.getTemplatePresentation().setEnabled(DirectoryManager.isInitSuccessed());
     }
 }

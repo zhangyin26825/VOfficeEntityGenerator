@@ -42,12 +42,15 @@ public class DaoJavaFile extends MysqlJavaFileCreate {
         stringBuffer.append(PUBLIC+INTERFACE+getClassName()+EXTENDS);
         if(isMultiId()){
             stringBuffer.append("MultipleIdDao");
+            stringBuffer.append(getBaseEntityGeneric());
         }else if(isNoId()){
             stringBuffer.append("NoIdDao");
+            stringBuffer.append(getBaseEntityGeneric());
         }else{
             stringBuffer.append("SingleIdDao");
+            stringBuffer.append("<"+getBaseEntityName()+",Integer>");
         }
-        stringBuffer.append(getBaseEntityGeneric());
+
         return stringBuffer.toString();
     }
 
