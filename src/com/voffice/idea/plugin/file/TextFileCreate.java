@@ -31,11 +31,21 @@ public interface TextFileCreate extends  FileCreate{
      */
     public PsiDirectory  getDirectory();
 
+    /**
+     * 覆盖旧文件 默认true
+     * @return
+     */
+     boolean overwriteOldFiles();
+
     @Override
     default PsiFile create(){
         logger.info("获取到的文件内容为"+getFileContent());
         logger.info("获取到的文件名称为"+getFileName());
         logger.info("获取到的文件目录为"+getDirectory());
-        return FileOperation.createFileExistDel(getFileName(), getFileContent(), getDirectory());
+        if (overwriteOldFiles()) {
+            return FileOperation.createFileExistDel(getFileName(), getFileContent(), getDirectory());
+        }else {
+            return FileOperation.createFileExistCancel(getFileName(), getFileContent(), getDirectory());
+        }
     }
 }

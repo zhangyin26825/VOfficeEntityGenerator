@@ -29,6 +29,11 @@ public abstract class JavaFileCreate  implements TextFileCreate,JavaCodeElement 
         return  getPackageName()+"."+getClassName();
     }
 
+    @Override
+    public boolean overwriteOldFiles() {
+        return true;
+    }
+
     /**
      * 类注释
      * @return

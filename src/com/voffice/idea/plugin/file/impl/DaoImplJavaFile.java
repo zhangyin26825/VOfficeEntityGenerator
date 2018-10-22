@@ -1,7 +1,9 @@
 package com.voffice.idea.plugin.file.impl;
 
 import com.intellij.psi.PsiDirectory;
+import com.intellij.psi.PsiFile;
 import com.voffice.idea.plugin.directory.DirectoryManager;
+import com.voffice.idea.plugin.fileoperation.FileOperation;
 import com.voffice.idea.plugin.jdbc.TableInfo;
 import com.voffice.idea.plugin.file.MysqlJavaFileCreate;
 
@@ -21,6 +23,11 @@ public class DaoImplJavaFile extends MysqlJavaFileCreate {
 //    public PsiDirectory getDirectory() {
 //        return DirectoryManager.getPsiDaoImplDirectory();
 //    }
+
+    @Override
+    public boolean overwriteOldFiles() {
+        return false;
+    }
 
     @Override
     public String getClassName() {
